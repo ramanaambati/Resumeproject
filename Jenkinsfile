@@ -12,16 +12,18 @@ pipeline {
         }
         stage("Checkout from SCM") {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/ramanaambati/Resumeproject.git', destination: '/home/ubunt'
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/ramanaambati/Resumeproject.git'
             }
         }
         stage("Build Application") {
             steps {
-                dir('/home/ubunt') {
-                    sh "mvn clean package"
-                }
+                sh "mvn clean package"
             }
         }
-        // ... (other stages)
+        stage("Test Application") {
+            steps {
+                sh "mvn test"
+            }
+        }
     }
 }

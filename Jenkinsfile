@@ -17,20 +17,12 @@ pipeline {
         }
         stage("Build Application") {
             steps {
-                dir("/home/ubuntu") {
-                    script {
-                        sh "mvn clean package"
-                    }
-                }
+                sh "mvn clean package"
             }
         }
         stage("Test Application") {
             steps {
-                dir("/home/ubuntu/workspace/resume project") {
-                    script {
-                        sh "mvn test"
-                    }
-                }
+                sh "mvn test"
             }
         }
     }
